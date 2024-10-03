@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { actionTypes } from "./actionTypes"
 
-const baseUrl = "http://localhost:8000";
+const baseUrl = "https://gts-eas-fed1.vercel.app";
 
 
 export const create_agreement = (formData)=>{

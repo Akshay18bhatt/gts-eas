@@ -17,7 +17,8 @@ const agreementRouter = require("./Routers/agreementRouter");
 
 // global middleware
 app.use(cors({
-    origin:"http://localhost:3000",
+    origin:"https://gts-eas.vercel.app",
+    methods: "GET,PUT,PATCH,POST,DELETE",
     credentials:true
 }))
 app.use(express.json());
