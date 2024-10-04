@@ -103,21 +103,21 @@ const update_agreement = ({ id, data }) => {
                 $or: [{ "empDetails.email": email }, { "empDetails.empId": empId }]
             })
 
-            if (isAgreement_exist?.empDetails?.email === email && isAgreement_exist?.empDetails?.empId === empId) {
+            if ( (!isAgreement_exist?._id.equals(id)) && isAgreement_exist?.empDetails?.email === email && isAgreement_exist?.empDetails?.empId === empId) {
                 return reject({
                     status: 400,
                     success: false,
                     message: `Agreement already exist !`
                 })
             }
-            if (isAgreement_exist?.empDetails?.email === email) {
+            if ((!isAgreement_exist?._id.equals(id)) && isAgreement_exist?.empDetails?.email === email) {
                 return reject({
                     status: 400,
                     success: false,
                     message: `Email already exist !`
                 })
             }
-            if (isAgreement_exist?.empDetails?.empId === empId) {
+            if ( (!isAgreement_exist?._id.equals(id)) && isAgreement_exist?.empDetails?.empId === empId) {
                 return reject({
                     status: 400,
                     success: false,
