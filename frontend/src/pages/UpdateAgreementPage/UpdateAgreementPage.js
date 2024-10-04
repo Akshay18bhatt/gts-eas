@@ -25,7 +25,7 @@ const UpdateAgreementPage = () => {
 
         e.preventDefault();
         if (!window.confirm("Are you sure you want to Update this agreement?")) {
-            return;    
+            return;
         }
         dispatch({ type: actionTypes.LOADING })
         dispatch(update_agreement(agreementId, updateFormData))
@@ -53,6 +53,7 @@ const UpdateAgreementPage = () => {
                 <Navbar />
             </header>
             <main className="w-full p-4 lg:p-0 lg:w-11/12  lg:mx-auto pt-5 lg:pt-10 pb-20  "  >
+                <h1 className="font-bold  lg:text-2xl mb-4 underline decoration-double" >Update Agreement Details</h1>
                 <Form
                     formControls={agreementFormControls}
                     buttonText={"Update Agreement"}

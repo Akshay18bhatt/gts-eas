@@ -13,5 +13,5 @@ export const extractDate = (timestamp) => {
     const month = months[extract.getMonth()];
     const date = extract.getDate();
 
-    return { year, month:[monthNum<10?"0"+monthNum:monthNum,month], date };
+    return { year, month:[(monthNum+1)<10?"0"+(monthNum+1):(monthNum+1),month], date };
 }

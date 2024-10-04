@@ -99,30 +99,44 @@ const update_agreement = ({ id, data }) => {
     return new Promise(async (resolve, reject) => {
 
         try {
-            const isAgreement_exist = await agreementModel.findOne({
-                $or: [{ "empDetails.email": email }, { "empDetails.empId": empId }]
-            })
+            const isEmail_exist = await agreementModel.findOne({"empDetails.email": email });
+            const isEmpId_exist = await agreementModel.findOne({"empDetails.empId": empId});
 
-            if ( (!isAgreement_exist?._id.equals(id)) && isAgreement_exist?.empDetails?.email === email && isAgreement_exist?.empDetails?.empId === empId) {
-                return reject({
-                    status: 400,
-                    success: false,
-                    message: `Agreement already exist !`
-                })
+
+            
+            if (!isEmail_exist?._id.equals(id)) {
+
+                if (isEmail_exist?.empDetails?.email === email && isEmail_exist?.empDetails?.empId === empId) {
+                    return reject({
+                        status: 400,
+                        success: false,
+                        message: `Agreement already exist !`
+                    })
+                }
+                if (isEmail_exist?.empDetails?.email === email) {
+                    return reject({
+                        status: 400,
+                        success: false,
+                        message: `Email already exist !`
+                    })
+                }
             }
-            if ((!isAgreement_exist?._id.equals(id)) && isAgreement_exist?.empDetails?.email === email) {
-                return reject({
-                    status: 400,
-                    success: false,
-                    message: `Email already exist !`
-                })
-            }
-            if ( (!isAgreement_exist?._id.equals(id)) && isAgreement_exist?.empDetails?.empId === empId) {
-                return reject({
-                    status: 400,
-                    success: false,
-                    message: `empId already exist !`
-                })
+            if (!isEmpId_exist?._id.equals(id)) {
+
+                if (isEmpId_exist?.empDetails?.email === email && isEmpId_exist?.empDetails?.empId === empId) {
+                    return reject({
+                        status: 400,
+                        success: false,
+                        message: `Agreement already exist !`
+                    })
+                }
+                if (isEmpId_exist?.empDetails?.empId === empId) {
+                    return reject({
+                        status: 400,
+                        success: false,
+                        message: `empId already exist !`
+                    })
+                }
             }
 
             const updatedAgreement = await agreementModel.findOneAndUpdate({ _id: id }, {

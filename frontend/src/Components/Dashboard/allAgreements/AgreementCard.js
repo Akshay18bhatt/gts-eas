@@ -12,10 +12,10 @@ const AgreementCard = ({ agreement }) => {
     const dispatch = useDispatch();
     const agreementId = agreement._id;
     const empDetails = { ...agreement.empDetails };
-    const { empName, department, position, email,empId } = empDetails;
+    const { empName, department, position, email, empId } = empDetails;
 
     /*                      Extracting agreement Date        */
-    let {agreementDate,startDate,duration} = (agreement.agreementDetails); 
+    let { agreementDate, startDate, duration } = (agreement.agreementDetails);
     /*                  extracting date using utils function         */
     const { year, month, date } = extractDate(agreementDate);
 
@@ -26,8 +26,8 @@ const AgreementCard = ({ agreement }) => {
         dispatch({ type: actionTypes.UPDATING })
 
         /*                              Extracting Date          */
-        const {date:agreement_date,month:agreement_month,year:agreement_year} = extractDate(agreementDate);
-        const {date:start_date,month:start_month,year:start_year} = extractDate(startDate);
+        const { date: agreement_date, month: agreement_month, year: agreement_year } = extractDate(agreementDate);
+        const { date: start_date, month: start_month, year: start_year } = extractDate(startDate);
 
         const updatingAgreement_details = {
             agreementId,
@@ -36,23 +36,43 @@ const AgreementCard = ({ agreement }) => {
             position,
             email,
             empId,
-            agreementDate:`${agreement_year}-${agreement_month[0]}-${agreement_date}`,
-            startDate:`${start_year}-${start_month[0]}-${start_date}`,
+            agreementDate: `${agreement_year}-${agreement_month[0]}-${agreement_date}`,
+            startDate: `${start_year}-${start_month[0]}-${start_date}`,
             duration
         }
-        localStorage.setItem("updatindAgreementDetails",JSON.stringify(updatingAgreement_details))
+        localStorage.setItem("updatindAgreementDetails", JSON.stringify(updatingAgreement_details))
         navigate(`/gts/agreement/update-agreement/${agreementId}`);
     }
 
     async function handleDelete() {
         if (!window.confirm("Are you sure you want to delete this agreement?")) {
-            return    
+            return
         }
-        else{
+        else {
             dispatch({ type: actionTypes.LOADING })
             dispatch(delete_agreement(agreementId))
         }
-        
+
+    }
+
+    function handleView(){
+
+        const { date: agreement_date, month: agreement_month, year: agreement_year } = extractDate(agreementDate);
+        const { date: start_date, month: start_month, year: start_year } = extractDate(startDate);
+
+        const viewAgreement_details = {
+            agreementId,
+            empName,
+            department,
+            position,
+            email,
+            empId,
+            agreementDate: `${agreement_date}-${agreement_month[0]}-${agreement_year}`,
+            startDate: `${start_date}-${start_month[0]}-${start_year}`,
+            duration
+        }
+        localStorage.setItem("viewAgreementDetails", JSON.stringify(viewAgreement_details))
+        navigate(`/gts/agreement/view-agreement/${agreementId}`);
     }
 
 
@@ -76,7 +96,7 @@ const AgreementCard = ({ agreement }) => {
                 <button onClick={handleEdit} className="edit border-2 flex justify-center items-center hover:bg-gray-300" >
                     <svg className="edit" height="24px" viewBox="0 -960 960 960" width="24px" fill="#008000"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" /></svg>
                 </button>
-                <button className=" view border-2 flex justify-center items-center hover:bg-gray-300" >
+                <button onClick={handleView}  className=" view border-2 flex justify-center items-center hover:bg-gray-300" >
                     <svg className="view" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0000ff"><path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" /></svg>
                 </button>
                 <button onClick={handleDelete} className=" delete border-2 flex justify-center items-center hover:bg-gray-300"  >

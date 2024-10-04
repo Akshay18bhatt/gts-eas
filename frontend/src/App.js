@@ -8,6 +8,7 @@ import AgreementDashboardPage from "./pages/agreementDashboardPage/AgreementDash
 import CreateAgreementPage from "./pages/CreateAgreementPage/CreateAgreementPage"
 import UpdateAgreementPage from "./pages/UpdateAgreementPage/UpdateAgreementPage"
 import ScrollToTop from "./utils/ScrolltoTop"
+import ViewAgreementPage from "./pages/ViewPage/ViewAgreementPage"
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
                 <Route path="/" element={<AgreementDashboardPage />} />
                 <Route path="/gts/agreement/:purpose" element={<CreateAgreementPage />} />
                 <Route path="/gts/agreement/:purpose/:id" element={<UpdateAgreementPage />} />
+                <Route path="/gts/agreement/view-agreement/:id" element={<ViewAgreementPage />} />
                 <Route path="*" element={<h1>404: Page Not found 🚫</h1>} />
             </Routes>
             <Loader/>
