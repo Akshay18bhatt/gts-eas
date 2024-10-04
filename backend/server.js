@@ -17,15 +17,16 @@ const agreementRouter = require("./Routers/agreementRouter");
 
 // global middleware
 app.use(cors({
-    origin:"https://gts-eas.vercel.app",
-    methods: "GET,PUT,PATCH,POST,DELETE",
+    origin:["https://gts-eas.vercel.app"],
     credentials:true
 }))
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 /*                  Router pipeline                 */
-app.get("/",(req,res)=>res.send("Hii 🙋‍♂️, Server is working"))
+app.get("/",(req,res)=>res.send({
+    Hello: "It is working...Relax!"
+}))
 app.use("/gts-agreement",agreementRouter)
 
 
