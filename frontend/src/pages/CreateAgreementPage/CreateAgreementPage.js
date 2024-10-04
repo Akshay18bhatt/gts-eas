@@ -1,4 +1,3 @@
-import Loader from "../../Components/Common/Loader/Loader"
 import Navbar from "../../Components/Common/Navbar/Navbar"
 import CreateAgreementForm from "../../Components/Create Agreement/CreateAgreementForm"
 
@@ -16,7 +15,6 @@ const CreateAgreementPage = () => {
                 <div className="h-full ">
                     <CreateAgreementForm />
                 </div>
-                <Loader />
             </main>
         </div>
     )

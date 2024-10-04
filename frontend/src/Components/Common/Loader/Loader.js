@@ -5,11 +5,6 @@ const Loader = ()=>{
 
     const isLoading = useSelector(state=>state.loading.isLoading);
     
-    console.log(isLoading);
-    
-
-    // console.log(isLoading);
-    
 
     return(
         <div className={!isLoading ? "hiddenLoader":"loader_container"}>

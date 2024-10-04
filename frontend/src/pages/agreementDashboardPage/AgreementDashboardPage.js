@@ -5,7 +5,6 @@ import Navbar from "../../Components/Common/Navbar/Navbar"
 import { get_all_agreements } from "../../redux/actions/actionCreators"
 import AllAgreements from "../../Components/Dashboard/allAgreements/AllAgreements"
 import { actionTypes } from "../../redux/actions/actionTypes"
-import Loader from "../../Components/Common/Loader/Loader"
 
 
 const AgreementDashboardPage = () => {
@@ -29,7 +28,6 @@ const AgreementDashboardPage = () => {
             <main className="w-11/12 mx-auto " >
                 <SearchandCreate />
                 <AllAgreements />
-                <Loader />
             </main>
         </div>
     )

@@ -1,13 +1,11 @@
 import { useSelector } from "react-redux"
 import AgreementCard from "./AgreementCard"
-import { agreementsList } from "./list"
 
 
 
 const AllAgreements = ()=>{
 
     const all_agreements = useSelector(state=>state.all_Agreements.all_agreements);
-    console.log(all_agreements);
     
     
 

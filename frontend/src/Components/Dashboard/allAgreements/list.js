@@ -1,3 +1,5 @@
+/*          Dummy Agreement List for preparing Agreement Card ui       */
+
 export const agreementsList = [
     {
       "_id": "66fc332b775e8fbbeb8e6e7e",

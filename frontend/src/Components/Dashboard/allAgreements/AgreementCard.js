@@ -6,7 +6,6 @@ import { actionTypes } from "../../../redux/actions/actionTypes";
 import { extractDate } from "../../../utils/extractDate";
 
 
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 const AgreementCard = ({ agreement }) => {
 
     const navigate = useNavigate();

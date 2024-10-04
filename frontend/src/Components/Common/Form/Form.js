@@ -1,9 +1,8 @@
 
-const Tag = ({ tag, label, name, tagType, options, placeholder, formData, setFormData }) => {
 
-    console.log(formData);
-    console.log(formData[name]);
-    
+
+/*                        Based on Tag Type returning input field            */
+const Tag = ({ tag, label, name, tagType, options, placeholder, formData, setFormData }) => {
 
     function handleFormData(e) {
         const activeField = e.target.name;
@@ -53,9 +52,11 @@ const Tag = ({ tag, label, name, tagType, options, placeholder, formData, setFor
     }
 }
 
+
+
+/*                               Main Form Component             */
 const Form = ({ formControls, buttonText, formData, setFormData, formSubmit }) => {
 
-console.log(formData);
 
     return (
 

@@ -6,16 +6,16 @@ import { useParams } from "react-router-dom"
 import { actionTypes } from "../../redux/actions/actionTypes"
 import { useDispatch } from "react-redux"
 import { agreementFormControls } from "../../Components/Create Agreement/formControls"
-import Loader from "../../Components/Common/Loader/Loader"
 
 
 
 const UpdateAgreementPage = () => {
 
+
+    /*        Instead of making an api call fetching data from localStorage    */
     const [updateFormData, setUpdateFormData] = useState(() => {
         return { ...JSON.parse(localStorage.getItem("updatindAgreementDetails")) }
     })
-    console.log(updateFormData);
 
     const params = useParams();
     const agreementId = params.id;
@@ -25,7 +25,7 @@ const UpdateAgreementPage = () => {
 
         e.preventDefault();
         if (!window.confirm("Are you sure you want to Update this agreement?")) {
-            return    
+            return;    
         }
         dispatch({ type: actionTypes.LOADING })
         dispatch(update_agreement(agreementId, updateFormData))
@@ -33,6 +33,8 @@ const UpdateAgreementPage = () => {
 
     useEffect(() => {
 
+
+        /*          Clean up function to remove from local stroage       */
         return (
             function () {
 
@@ -41,7 +43,7 @@ const UpdateAgreementPage = () => {
             }
         )
 
-    }, [])
+    }, [dispatch])
 
 
 
@@ -58,7 +60,6 @@ const UpdateAgreementPage = () => {
                     setFormData={setUpdateFormData}
                     formSubmit={updateformSubmit}
                 />
-                <Loader />
             </main>
         </div>
     )

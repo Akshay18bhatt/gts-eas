@@ -13,7 +13,6 @@ const {agreement_FormData_validation } = require("../utils/agreementUtils");
 /*                      Create Agreement Controller              */
 const create_Agreement_Controller = async (req, res) => {
 
-    console.log(req.body);
 
     let { agreementDate, startDate } = req.body;
 
@@ -33,7 +32,6 @@ const create_Agreement_Controller = async (req, res) => {
         // })
     }
     catch (err) {
-        console.log("errName: ", err.name, "errMessage: ", err.message);
         return res.send({
             status: 400,
             success: false,
@@ -132,7 +130,6 @@ const update_Agreement_Controller = async(req,res)=>{
     
 
     const agr = await agreementModel.findOne({_id:agreementId_toupdate})
-    console.log("Got this -->",agr);
     
     
     return res.send({

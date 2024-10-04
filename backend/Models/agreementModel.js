@@ -53,7 +53,6 @@ const create_new_agreement = async ({ empName, email, department, position, empI
 
         }
         catch (err) {
-            console.log("Error Name: ", err.name, "Error message: ", err.message);
 
             return reject({
                 status: 500,
@@ -81,7 +80,6 @@ const get_all_Agreements = ({ skip }) => {
 
         }
         catch (err) {
-            console.log("Err: ", err.name, err.message);
             reject({
                 status: 500,
                 success: false,
@@ -93,7 +91,7 @@ const get_all_Agreements = ({ skip }) => {
 }
 
 const update_agreement = ({ id, data }) => {
-    console.log("Got this in model --> ", id, data);
+
     let { empName, email, department, position, empId, agreementDate, startDate, duration } = data;
     agreementDate = agreementDate && new Date(agreementDate).getTime();
     startDate = startDate && new Date(startDate).getTime();
@@ -101,6 +99,31 @@ const update_agreement = ({ id, data }) => {
     return new Promise(async (resolve, reject) => {
 
         try {
+            const isAgreement_exist = await agreementModel.findOne({
+                $or: [{ "empDetails.email": email }, { "empDetails.empId": empId }]
+            })
+
+            if (isAgreement_exist?.empDetails?.email === email && isAgreement_exist?.empDetails?.empId === empId) {
+                return reject({
+                    status: 400,
+                    success: false,
+                    message: `Agreement already exist !`
+                })
+            }
+            if (isAgreement_exist?.empDetails?.email === email) {
+                return reject({
+                    status: 400,
+                    success: false,
+                    message: `Email already exist !`
+                })
+            }
+            if (isAgreement_exist?.empDetails?.empId === empId) {
+                return reject({
+                    status: 400,
+                    success: false,
+                    message: `empId already exist !`
+                })
+            }
 
             const updatedAgreement = await agreementModel.findOneAndUpdate({ _id: id }, {
                 "empDetails.empName": empName,

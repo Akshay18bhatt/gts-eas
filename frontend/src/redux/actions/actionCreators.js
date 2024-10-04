@@ -30,9 +30,8 @@ export const create_agreement = (formData)=>{
             
         }
         catch(err){
-            console.log(err);
             dispatch({type:actionTypes.LOADING_SUCCESS})
-            toast.warning(err.message)
+            toast.error(err.message)
             
         }
     }
@@ -58,7 +57,6 @@ export const get_all_agreements = ()=>{
 
         }
         catch(err){
-            console.log(err);
             dispatch({type:actionTypes.LOADING_SUCCESS})
             toast.error(err.message)
         }
@@ -90,7 +88,6 @@ export const update_agreement = (agreementId,formData)=>{
             localStorage.removeItem("updatindAgreementDetails");
         }
         catch(err){
-            console.log(err);
             dispatch({ type: actionTypes.LOADING_SUCCESS }) 
             toast.error(err.message);
             localStorage.removeItem("updatindAgreementDetails");
@@ -114,6 +111,7 @@ export const delete_agreement= (deleteId)=>{
             })
 
             const responseData = await responseObj.json();
+
             dispatch(get_all_agreements())
             dispatch({type:actionTypes.LOADING_SUCCESS})
             if(responseData.success){
@@ -121,11 +119,10 @@ export const delete_agreement= (deleteId)=>{
             }else{
                 toast.error(responseData.message)
             }
-            console.log(responseData);
+            
 
         }
         catch(err){
-            console.log(err);
             dispatch({type:actionTypes.LOADING_SUCCESS})
             toast.error(err.message);
             
