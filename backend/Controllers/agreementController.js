@@ -7,7 +7,7 @@ const { create_new_agreement,
         delete_Agreement,
         update_agreement} = require("../Models/agreementModel");
 
-const {agreement_FormData_validation } = require("../utils/agreementUtils");
+const {agreement_FormData_validation, idValidation } = require("../utils/agreementUtils");
 
 
 /*                      Create Agreement Controller              */
@@ -81,7 +81,7 @@ const delete_Agreement_Controller  = async(req,res)=>{
     const {deleteId} = req.body;
 
     try{
-
+        await idValidation(deleteId);
         const deleted_agreement = await delete_Agreement({deleteId});
 
         return res.send({
@@ -101,8 +101,9 @@ const delete_Agreement_Controller  = async(req,res)=>{
 const update_Agreement_Controller = async(req,res)=>{
 
     const agreementId_toupdate = req.params.id;
-
+    
     try{
+        await idValidation(agreementId_toupdate);
         await agreement_FormData_validation({...req.body})
     }
     catch(err){
@@ -126,16 +127,7 @@ const update_Agreement_Controller = async(req,res)=>{
     catch(err){
         return res.send(err);
     }
-   
-    
-
-    const agr = await agreementModel.findOne({_id:agreementId_toupdate})
-    
-    
-    return res.send({
-        status:200,
-        message:"Effect reached here..."
-    })
+ 
     
 }
 module.exports = {  create_Agreement_Controller, 

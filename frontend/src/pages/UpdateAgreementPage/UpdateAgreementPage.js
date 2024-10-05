@@ -9,6 +9,7 @@ import { agreementFormControls } from "../../Components/Create Agreement/formCon
 
 
 
+/* Root Page for Updating an Agreement or we can say a Layout page */
 const UpdateAgreementPage = () => {
 
 
@@ -21,6 +22,9 @@ const UpdateAgreementPage = () => {
     const agreementId = params.id;
     const dispatch = useDispatch();
 
+
+    
+    /* This function handles what happens when we submit the update agreement form */
     function updateformSubmit(e) {
 
         e.preventDefault();
@@ -54,6 +58,9 @@ const UpdateAgreementPage = () => {
             </header>
             <main className="w-full p-4 lg:p-0 lg:w-11/12  lg:mx-auto pt-5 lg:pt-10 pb-20  "  >
                 <h1 className="font-bold  lg:text-2xl mb-4 underline decoration-double" >Update Agreement Details</h1>
+                {/* This component returns us the required form based on the formControls, 
+                    buttonText, formData(pre poupulated with agreements original data initially), 
+                */}
                 <Form
                     formControls={agreementFormControls}
                     buttonText={"Update Agreement"}

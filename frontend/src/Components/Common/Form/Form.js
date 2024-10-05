@@ -78,6 +78,8 @@ const Form = ({ formControls, buttonText, formData, setFormData, formSubmit }) =
                 {
                     formControls.map((field) => {
                         return (
+                            
+                            /*This component returns input field Based on Tag Type and rest information */
                             <Tag
                                 key={field.name}
                                 tag={field.tag}

@@ -16,12 +16,27 @@ const App = () => {
 
     return (
         <div>
+            {/* This component is to solve "SPA" another page auto scroll problem */}
             <ScrollToTop />
+            {/* All the routes based on each path */}
             <Routes>
+                {/* Empty path for homepage which redirects  to Page --> AgreementDashboardPage  */}
                 <Route path="/" element={<AgreementDashboardPage />} />
-                <Route path="/gts/agreement/:purpose" element={<CreateAgreementPage />} />
-                <Route path="/gts/agreement/:purpose/:id" element={<UpdateAgreementPage />} />
+
+                {/* /create-agreement to create which redirects  to Page --> CreateAgreementPage  */}
+                <Route path="/gts/agreement/create-agreement" element={<CreateAgreementPage />} />
+
+                {/* /update-agreement/{agreementId path params} to update 
+                    which redirects  to Page --> UpdateAgreementPage
+                */}
+                <Route path="/gts/agreement/update-agreement/:id" element={<UpdateAgreementPage />} />
+
+                {/* /view-agrement/{agreementId path params to view } 
+                    which redirects  to Page --> ViewAgreementPage
+                */}
                 <Route path="/gts/agreement/view-agreement/:id" element={<ViewAgreementPage />} />
+
+                {/* wildcard route for unknown routes */}
                 <Route path="*" element={<h1>404: Page Not found 🚫</h1>} />
             </Routes>
             <Loader/>

@@ -5,6 +5,15 @@ import AgreementCard from "./AgreementCard"
 
 const AllAgreements = ()=>{
 
+    /*
+        state = state refers to redux combine reducers state 
+        = {
+            loading : {isLoading: true/false},
+            updating : {isUpdating: true/false},
+            all_Agreements : {all_agreements:[]}
+        }
+    */
+    // calling useSelector to get state from the redux
     const all_agreements = useSelector(state=>state.all_Agreements.all_agreements);
     
     
@@ -15,6 +24,7 @@ const AllAgreements = ()=>{
                 all_agreements.length>0  ?
                 all_agreements.map(agreement=>{
                     return(
+                        // This compnent returns a card for each agreement based on information passed
                         <AgreementCard agreement={agreement} key={agreement._id} />
                     )
                 })

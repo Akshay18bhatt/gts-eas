@@ -30,6 +30,15 @@ const agreement_FormData_validation = ({ empName, email, department, position, e
 
 }
 
+const idValidation = (id)=>{
+
+    return new Promise((resolve,reject)=>{
+
+        if(!id)reject("Agreement Id is required.");
+
+        resolve();
+    })
+}
 
 
-module.exports = { agreement_FormData_validation }
+module.exports = { agreement_FormData_validation, idValidation }

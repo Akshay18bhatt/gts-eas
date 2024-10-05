@@ -7,6 +7,8 @@ import AllAgreements from "../../Components/Dashboard/allAgreements/AllAgreement
 import { actionTypes } from "../../redux/actions/actionTypes"
 
 
+
+/* Root Page for Home or dashboard page or we can say a Layout page */
 const AgreementDashboardPage = () => {
 
     const dispatch = useDispatch();
@@ -26,7 +28,10 @@ const AgreementDashboardPage = () => {
             </header>
 
             <main className="w-11/12 mx-auto " >
+                {/* This component incorporate homepage search input ,filter fields and create agreement button */}
                 <SearchandCreate />
+
+                {/* This components returns all the agreement cards for to display on homepage  */}
                 <AllAgreements />
             </main>
         </div>

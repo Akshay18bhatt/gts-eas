@@ -11,7 +11,10 @@ const AgreementCard = ({ agreement }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const agreementId = agreement._id;
+    /* Destructuring empDetails object which consists of employee details from agreement prop */
     const empDetails = { ...agreement.empDetails };
+
+    /* Destructuring employee details from the empDetails */
     const { empName, department, position, email, empId } = empDetails;
 
     /*                      Extracting agreement Date        */
@@ -22,6 +25,7 @@ const AgreementCard = ({ agreement }) => {
 
 
 
+    /* This function handles what happens when we click an edit button */
     function handleEdit() {
         dispatch({ type: actionTypes.UPDATING })
 
@@ -40,10 +44,14 @@ const AgreementCard = ({ agreement }) => {
             startDate: `${start_year}-${start_month[0]}-${start_date}`,
             duration
         }
+        /* Saving agreement details in localStorage to avoid unnecessary db calls for each agreement  */
         localStorage.setItem("updatindAgreementDetails", JSON.stringify(updatingAgreement_details))
+        /* After saving to localStorage redirecting to update agreement page */
         navigate(`/gts/agreement/update-agreement/${agreementId}`);
     }
 
+    
+    /* This function handles what happens when we click an delete button */
     async function handleDelete() {
         if (!window.confirm("Are you sure you want to delete this agreement?")) {
             return
@@ -52,9 +60,10 @@ const AgreementCard = ({ agreement }) => {
             dispatch({ type: actionTypes.LOADING })
             dispatch(delete_agreement(agreementId))
         }
-
     }
 
+    
+    /* This function handles what happens when we click an view agreement button */
     function handleView(){
 
         const { date: agreement_date, month: agreement_month, year: agreement_year } = extractDate(agreementDate);
@@ -71,7 +80,10 @@ const AgreementCard = ({ agreement }) => {
             startDate: `${start_date}-${start_month[0]}-${start_year}`,
             duration
         }
+        
+        /* Saving agreement details in localStorage to avoid unnecessary db calls for each agreement  */
         localStorage.setItem("viewAgreementDetails", JSON.stringify(viewAgreement_details))
+        /* After saving to localStorage redirecting to view agreement page */
         navigate(`/gts/agreement/view-agreement/${agreementId}`);
     }
 

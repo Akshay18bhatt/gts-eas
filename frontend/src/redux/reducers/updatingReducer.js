@@ -2,8 +2,9 @@ import { actionTypes } from "../actions/actionTypes";
 
 
 
-const updatingReducer = (state={isUpdating:false},action)=>{
 
+/* Reducer for handling when api is being hit... to show update and then to show indicator */
+const updatingReducer = (state={isUpdating:false},action)=>{
 
     switch(action.type){
 

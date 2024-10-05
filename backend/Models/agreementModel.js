@@ -73,7 +73,7 @@ const get_all_Agreements = ({ skip }) => {
             const allAgreements = await agreementModel.aggregate([
                 { $sort: { creation_date_time: -1 } },
                 { $skip: skip },
-                { $limit: 10 }
+                { $limit: 15 }
             ])
 
             resolve(allAgreements);

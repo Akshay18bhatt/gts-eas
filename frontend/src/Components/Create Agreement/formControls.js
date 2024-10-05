@@ -1,3 +1,5 @@
+
+/* These are the basic form field details required to create a form. */
 export const agreementFormControls = [
     {
         label:"Employee Name",

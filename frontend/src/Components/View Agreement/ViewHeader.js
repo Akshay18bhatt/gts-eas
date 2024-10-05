@@ -18,7 +18,6 @@ const ViewHeader = () => {
                 </div>
             </div>
             <div>
-                {/* <h2 className="font-semibold text-lg" >Contact Us</h2> */}
                 <div>
                     <div className="flex justify-between lg:gap-2 text-[10px] lg:text-base" >
                         <span className="lg:hidden" >

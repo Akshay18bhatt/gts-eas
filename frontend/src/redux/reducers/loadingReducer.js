@@ -1,6 +1,7 @@
 import { actionTypes } from "../actions/actionTypes";
 
 
+/* Reducer for handling when api is being fetching... to show loading indicator */
 const loadingReducer = (state={isLoading:false}, action)=>{
 
     switch(action.type){

@@ -2,6 +2,8 @@ import Navbar from "../../Components/Common/Navbar/Navbar"
 import CreateAgreementForm from "../../Components/Create Agreement/CreateAgreementForm"
 
 
+
+/* Root Page for Creating an Agreement or we can say a Layout page */
 const CreateAgreementPage = () => {
 
 
